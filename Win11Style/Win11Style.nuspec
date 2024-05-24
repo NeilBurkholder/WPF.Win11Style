@@ -2,15 +2,15 @@
 <package >
 	<metadata>
 		<id>NCAutomation.Win11Style</id>
-		<version>1.0.11</version>
+		<version>1.1.0</version>
 		<title>owner</title>
 		<authors>Neil Burkholder</authors>
 		<owners>Neil Burkholder</owners>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
 		<license type="expression">MIT</license>
 		<description>Shared Control lib</description>
-		<releaseNotes>Fixed Memory Leak</releaseNotes>
-		<copyright>Copyright 2023</copyright>
+		<releaseNotes>Added support for dark system menu</releaseNotes>
+		<copyright>Copyright 2024</copyright>
 		<tags></tags>
 		<dependencies>
 			<group targetFramework=".NETFramework4.8">

@@ -60,6 +60,7 @@ namespace Win11Style.Showcase
                 App.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("pack://application:,,,/Win11Style;component/Themes/LightMode.xaml") });
                 App.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("pack://application:,,,/Win11Style;component/Themes/Win11Style.xaml") });
             }
+            SetSystemMenuMode(false);
         }
 
         private void DarkMode_Checked(object sender, RoutedEventArgs e)
@@ -76,6 +77,7 @@ namespace Win11Style.Showcase
             if (dark != null) App.Current.Resources.MergedDictionaries.Remove(dark);
             App.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("pack://application:,,,/Win11Style;component/Themes/DarkMode.xaml") });
             App.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("pack://application:,,,/Win11Style;component/Themes/Win11Style.xaml") });
+            SetSystemMenuMode();
         }
 
         private void Win11_Unchecked(object sender, RoutedEventArgs e)
@@ -101,6 +103,7 @@ namespace Win11Style.Showcase
             }
             App.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("pack://application:,,,/Win11Style;component/Themes/LightMode.xaml") });
             App.Current.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = new Uri("pack://application:,,,/Win11Style;component/Themes/Win11Style.xaml") });
+            SetSystemMenuMode(false);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

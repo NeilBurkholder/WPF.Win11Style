@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
+using ControlzEx.Theming;
 using System;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -9,6 +11,11 @@ namespace Win11Style.WindowChrome
 {
     public class ModernWindow : ControlzEx.WindowChromeWindow
     {
+        [DllImport("uxtheme.dll", EntryPoint = "#135", SetLastError = true, CharSet = CharSet.Unicode)]
+        private static extern int SetPreferredAppMode(int preferredAppMode);
+        [DllImport("uxtheme.dll", EntryPoint = "#136", SetLastError = true, CharSet = CharSet.Unicode)]
+        private static extern void FlushMenuThemes();
+
         public ModernWindow()
         {
             WeakReferenceMessenger.Default.Register<ChromeColorChangedMessage>(this, (r, m) =>
@@ -90,14 +97,26 @@ namespace Win11Style.WindowChrome
 
         #endregion
 
+        private bool winLoaded;
         private void Win_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
                 HwndSource source = PresentationSource.FromVisual(this) as HwndSource;
                 source.AddHook(WndProc);
+                WeakReferenceMessenger.Default.Register<ThemeChangedMessage>(this, (r, m) =>
+                {
+                    SetSystemMenuMode(m.Value == WindowsTheme.Dark);
+                });
+
             }
             catch { }
+        }
+
+        public void SetSystemMenuMode(bool darkMode = true)
+        {
+            SetPreferredAppMode(darkMode ? 2 : 0); // Enable dark system menu
+            FlushMenuThemes();
         }
 
 
